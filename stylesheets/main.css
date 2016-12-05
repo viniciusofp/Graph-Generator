@@ -1,0 +1,83 @@
+body	{
+	padding-top: 50px;
+	background-color: #efefef;
+}
+
+#header { 
+	margin-bottom: 50px;
+}
+
+
+#graph 	{
+	background-color: white;
+	display: block;
+}
+
+
+#minhasNotasWrapper{
+	background-color: #fafafa;
+	border-radius: 5px;
+	border: 1px solid #ededed;
+	min-height: 100vh;
+	padding-top: 15px;
+}
+
+#novaNotaWrapper {
+	background: #eaeaea;
+    border-top: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 0 5px 5px 0;
+}
+
+.post {
+	margin-bottom: 15px;
+	padding: 15px;
+
+}
+
+.form-control.postFormText {
+	height: 300px;
+}
+
+.post {
+	background-color: #fff;
+    border: 1px solid #e1efea;
+    border-radius: 5px;
+}
+
+.post.urgence1 {
+	background-color: #d1f3f0;
+    border: 1px solid #e1efea;
+    border-radius: 5px;
+}
+
+.post.urgence2 {
+	background-color: #DDFFB5;
+    border: 1px solid #eaefe1;
+    border-radius: 5px;
+}
+
+.post.urgence3 {
+	background-color: #fff5b5;
+    border: 1px solid #eaefe1;
+    border-radius: 5px;
+}
+.post.urgence4 {
+	background-color: #ffd6aa;
+    border: 1px solid #eaefe1;
+    border-radius: 5px;
+}
+.post.urgence5 {
+	background-color: #f79893;
+    border: 1px solid #eaefe1;
+    border-radius: 5px;
+}
+
+.post .img-responsive {
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
