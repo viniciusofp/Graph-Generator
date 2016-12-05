@@ -12,88 +12,80 @@
 <div class="container">
 	<div class="row">
 		<div id="header" class="col-md-offset-3 col-md-6">
-			<h1 class="text-center">Graph Generator<br>
+			<svg xmlns="http://www.w3.org/2000/svg" width="12cm" height="6cm" viewBox="0 0 1200 600" version="1.1">
+			  <title>Example quad01 - quadratic BÃ©zier commands in path data</title>
+			  <desc>Picture showing a "Q" a "T" command,
+			        along with annotations showing the control points
+			        and end points</desc>
+			  <rect x="1" y="1" width="1198" height="598" fill="none"/>
+
+			  <path d="M200,300 Q400,50 600,300 T1000,300" fill="none" stroke="#31b0d5" stroke-width="5"/>
+			  <!-- End points -->
+			  <g fill="#449d44">
+			    <circle cx="200" cy="300" r="10"/>
+			    <circle cx="600" cy="300" r="10"/>
+			    <circle cx="1000" cy="300" r="10"/>
+			  </g>
+			  <!-- Control points and lines from end points to control points -->
+			  <g fill="#888888">
+			    <circle cx="400" cy="50" r="10"/>
+			    <circle cx="800" cy="550" r="10"/>
+			  </g>
+			  <path d="M200,300 L400,50 L600,300             L800,550 L1000,300" fill="none" stroke="#888888" stroke-width="2"/>
+			</svg>
+			<h1 class="text-center">Curves Generator<br>
 			<small><em>Gerador de gráficos baseado em D3.js e Angular.js</em></small></h1>
 		</div>
 	</div>
 
 	<div class="row" ng-controller='graphContrl'>
-		<div class="col-md-offset-2 col-md-8">
-			<span id="graph">
-				
-			</span>
-		</div>
-		<div id="novaNotaWrapper" class="col-md-offset-3 col-md-6">
-			<h3>Alterar Gráfico</h3>
+		<div id="novaNotaWrapper" class="col-md-4">
 			<section >
 				<form>
 					<div class="form-group">
 						<h5>Função <span style="color: red; font-weight: bolder">*</span></h5>
-						<textarea required class="form-control" placeholder='Escreva aqui a função para seu gráfico' ng-model='fun'></textarea>
+						<textarea required class="form-control" placeholder='cos(x)x' ng-model='fun' >cos(x)x</textarea>
 					</div>
-					<button class="btn btn-info pull-right" value="submit" type='submit' ng-click='addGraph()'>Adicionar</button>
-					<button class="btn btn-success pull-right" value="submit" type='submit' ng-click='newGraph()'>Atualizar</button>
+					<button style="width: 47%; margin: 1%" class="btn btn-success" value="submit" type='submit' ng-click='newGraph()'><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Gerar novo gráfico</button>
+					<button style="width: 47%; margin: 1%" class="btn btn-info" value="submit" type='submit' ng-click='addGraph()'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar ao gráfico</button>
 				</form>	
 			</section>
-			<div>
-				<blockquote>
-					xˆ2<br>
-					cos(x)<br>
-					sin(x)<br>
-					tan(x)<br>
-					sqrt(1 - x * x)
-				</blockquote>
+			
+			<div class="clearfix">
+				<h2 class="text-center">{{funcTitle}} <small>({{funcs.length}})</small></h2>
+				<h4 class="text-center" ng-repeat='func in funcs track by $index'>
+					{{func}}
+					<small><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click='removeFun($index)'></span></small>
+				</h4>
 			</div>
+
 		</div>
+
+		<div class="col-md-8">
+			<span id="graph">
+				
+			</span>
+		</div>
+		
 	</div>
 
-<!-- 	<div class="row" ng-controller='BlogContrl'>
-		<div id="minhasNotasWrapper" class="col-sm-8">
-
-			<div class="post urgence{{post.cor}}" ng-repeat='post in posts| orderBy: "-createdAt"'  >
-				<span class="glyphicon glyphicon-remove pull-right" aria-hidden="true" ng-click='removerNota(post)'></span>
-				<small>{{post.createdAt | date : 'short'}}</small>
-				<h2>{{post.title}}</h2>
-				<p class="lead">{{post.text}}</p>
-			</div>
-
-			
-		</div>
-		<div id="novaNotaWrapper" class="col-sm-4">
-			<h3>Cria nota</h3>
-			<section >
-				<form ng-submit='post()'>
-					<div class="form-group">
-						<h5>Título</h5>
-						<textarea class="postFormTitle form-control" maxlength="140" placeholder='Dê um título à sua nota' ng-model='title'></textarea>
-					</div>
-					<div class="form-group">
-						<h5>Função <span style="color: red; font-weight: bolder">*</span></h5>
-						<textarea required class="form-control" placeholder='Escreva aqui sua nota' ng-model='function'></textarea>
-					</div>
-					<button class="btn btn-success pull-right" value="submit" type='submit'>Salvar</button>
-				</form>	
-			</section>
-			
-		</div>
-	</div> -->
 </div>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/mathjs/1.5.2/math.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/1.5.2/math.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="javascripts/function-plot.js"></script>
 <script src="javascripts/myBlog.js"></script>
 <script type="text/javascript">
+	
 
-
-
-
-
-
-
+$( document ).ready(function() {
+    var abc = $('.line');
+	var xyz = abc.attr("stroke");
+	console.log(xyz);
+});
 </script>
 </body>
 </html>

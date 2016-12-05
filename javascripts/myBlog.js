@@ -1,75 +1,80 @@
 var app = angular.module('myBlog', []);
 
-app.controller('BlogContrl', ['$scope', function($scope){
-	$scope.siteTitle = 'Hello';
 
-	$scope.posts = archive;
-	$scope.post = function(post){
-		var newPost = { 
-			title: $scope.title,
-			text: $scope.text,
-			cor: $scope.cor,
-			imageUrl: $scope.imageUrl,
-			createdAt: Date.now()
-		}
-		archive.push(newPost);
-		$scope.title = '';
-		$scope.text = '';
-		$scope.imageUrl = '';
-
-	}
-	
-	$scope.removerNota = function(post){
-		console.log(archive.indexOf(post))
-		archive.splice(archive.indexOf(post), 1);
-
-	}
-}]);
 
 app.controller('graphContrl', ['$scope', function($scope){
-	var funcao = [
-	    { fn: 'sqrt(1 - x * x)' }
+
+
+	var w = document.getElementById("graph").offsetWidth - 20;
+
+	window.novafuncao = [
+	    { fn: 'x^2' }
 	  ];
-	var arr = {
-	  width: 750,
+
+	window.novoArr = {
+	  tip: {
+		    xLine: true,    // dashed line parallel to y = 0
+		    yLine: true,    // dashed line parallel to x = 0
+		    renderer: function (x, y, index) {
+		      // the returning value will be shown in the tip
+		    }
+		  },
+	  width: w,
   	  height: 600,
-  	  title: 'Meu gráfico',
 	  target: '#graph',
-	  data: funcao
+	  data: novafuncao
 	};
 
+	functionPlot(novoArr);
+
+	$scope.funcs = ['x^2'];
+	$scope.funcTitle = 'Função';
+
 	
-	var graph = functionPlot(arr);
 
 	$scope.newGraph = function() {
-		funcao = [];
-		funcao =[ { fn: $scope.fun } ];
-		var arr = {
+
+		$scope.funcTitle = 'Função';
+		window.novafuncao = [];
+
+		window.novafuncao.push({ fn: $scope.fun });
+		window.novoArr = {
+		  tip: {
+		    xLine: true,    // dashed line parallel to y = 0
+		    yLine: true,    // dashed line parallel to x = 0
+		    renderer: function (x, y, index) {
+		      // the returning value will be shown in the tip
+		    }
+		  },
 		  width: 750,
 	  	  height: 600,
-	  	  title: 'Meu gráfico',
 		  target: '#graph',
-		  data: funcao
+		  data: window.novafuncao
 		};
-		var graph = functionPlot(arr);
-		console.log('click');
-		console.log(funcao);
-		console.log(arr);
+		$( "#graph" ).empty();
+		functionPlot(novoArr);
+		$scope.funcs = [$scope.fun];
+		console.log(novoArr);
 	}
 	$scope.addGraph = function() {
-		funcao.push({ fn: $scope.fun });
-		var arr = {
-		  width: 750,
-	  	  height: 600,
-	  	  title: 'Meu gráfico',
-		  target: '#graph',
-		  data: funcao
+		if ($scope.funcs.length > 8) {
+			alert('Você pode traçar até 9 curvas ao mesmo tempo');
+			return
 		};
-		console.log('click');
-		console.log(funcao);
-		console.log(arr);
+		$scope.funcTitle = 'Funções';
+		$scope.funcs.push($scope.fun);
+		novafuncao.push({ fn: $scope.fun });
+		functionPlot(novoArr);
 
-		var graph = functionPlot(arr);
+	}
+
+	$scope.removeFun = function (i) {
+
+		$scope.funcs.splice(i,1);
+		window.novafuncao.splice(i, 1);
+		$( "#graph" ).empty();
+		functionPlot(novoArr);
+
 	}
 
 
