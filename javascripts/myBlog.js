@@ -1,8 +1,15 @@
+
+
+
 var app = angular.module('myBlog', []);
 
 
 
+
+
 app.controller('graphContrl', ['$scope', function($scope){
+
+
 
 	var colors = function() {
 		$( window ).ready(function() {
@@ -48,6 +55,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 	
 
 	$scope.newGraph = function() {
+		$scope.funcs = [$scope.fun];
 
 		$scope.funcTitle = 'Função';
 		window.functions = [{ fn: $scope.fun }];
@@ -66,7 +74,6 @@ app.controller('graphContrl', ['$scope', function($scope){
 		};
 		$( "#graph" ).empty();
 		functionPlot(arr);
-		$scope.funcs = [$scope.fun];
 		colors();
 	}
 	$scope.addGraph = function() {
@@ -74,10 +81,20 @@ app.controller('graphContrl', ['$scope', function($scope){
 			alert('Você pode traçar no máximo nove curvas ao mesmo tempo');
 			return
 		};
-		$scope.funcTitle = 'Funções';
-		$scope.funcs.push($scope.fun);
-		functions.push({ fn: $scope.fun });
-		functionPlot(arr);
+
+		try {
+			functions.push({ fn: $scope.fun });
+			functionPlot(arr);
+	    } catch ( e ) {
+	        alert("Você tem certeza que  digitou uma expressão válida? Cheque o box no rodapé da página para saber sintaxe correta." );
+	        functions.pop();
+	        functionPlot(arr);
+	        return
+	    }
+
+			$scope.funcTitle = 'Funções';
+			$scope.funcs.push($scope.fun);
+
 		
 		colors();
 
@@ -89,6 +106,9 @@ app.controller('graphContrl', ['$scope', function($scope){
 			$scope.funcTitle = 'Função';
 		};
 		window.functions.splice(i, 1);
+		if ($scope.funcs.length == 0) {
+			$scope.funcTitle = 'Adicione uma função de variável "x"!';
+		};
 		$( "#graph" ).empty();
 		functionPlot(arr);
 		colors();

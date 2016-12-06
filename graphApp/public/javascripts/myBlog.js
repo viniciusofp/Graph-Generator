@@ -1,112 +1,119 @@
+
+
+
 var app = angular.module('myBlog', []);
 
-app.controller('BlogContrl', ['$scope', function($scope){
-	$scope.siteTitle = 'Hello';
 
-	$scope.posts = archive;
-	$scope.post = function(post){
-		var newPost = { 
-			title: $scope.title,
-			text: $scope.text,
-			cor: $scope.cor,
-			imageUrl: $scope.imageUrl,
-			createdAt: Date.now()
-		}
-		archive.push(newPost);
-		$scope.title = '';
-		$scope.text = '';
-		$scope.imageUrl = '';
 
-	}
-	
-	$scope.removerNota = function(post){
-		console.log(archive.indexOf(post))
-		archive.splice(archive.indexOf(post), 1);
 
-	}
-}]);
 
 app.controller('graphContrl', ['$scope', function($scope){
-	var funcao = [
-	    { fn: 'sqrt(1 - x * x)' }
-	  ];
-	var arr = {
-	  width: 750,
-  	  height: 600,
-  	  title: 'Meu gráfico',
-	  target: '#graph',
-	  data: funcao
+
+
+
+	var colors = function() {
+		$( window ).ready(function() {
+			for (i in $scope.funcs) {
+				var colorVal = $('.line-' + i.toString()).attr('stroke');
+				$('.funColor').eq(i).attr('style', 'color:' + colorVal + '; border-color:' + colorVal);
+				console.log('Loop number ' + i.toString() + ' | ' + colorVal)
+			};
+		});
+		
+
 	};
 
+	var w = $("#graph").width() - 20;
+	var h = $("#graph").height() - 20;
+
+	window.functions = [
+	    { fn: 'x^2' },
+	    { fn: 'cos(x)' },
+	    { fn: '2x+1' },
+	  ];
+
+	window.arr = {
+	  tip: {
+		    xLine: true,    // dashed line parallel to y = 0
+		    yLine: true,    // dashed line parallel to x = 0
+		    renderer: function (x, y, index) {
+		      // the returning value will be shown in the tip
+		    }
+		  },
+	  grid: true,
+	  width: w,
+  	  height: h,
+	  target: '#graph',
+	  data: functions
+	};
+
+	functionPlot(arr);
+
+	$scope.funcs = ['x^2', 'cos(x)', '2x+1'];
+	$scope.funcTitle = 'Funções';
+	colors();
 	
-	var graph = functionPlot(arr);
 
 	$scope.newGraph = function() {
-		funcao = [];
-		funcao =[ { fn: $scope.fun } ];
-		var arr = {
-		  width: 750,
-	  	  height: 600,
-	  	  title: 'Meu gráfico',
+
+		$scope.funcTitle = 'Função';
+		window.functions = [{ fn: $scope.fun }];
+		window.arr = {
+		  tip: {
+		    xLine: true,    // dashed line parallel to y = 0
+		    yLine: true,    // dashed line parallel to x = 0
+		    renderer: function (x, y, index) {
+		      // the returning value will be shown in the tip
+		    }
+		  },
+		  width: w,
+	  	  height: h,
 		  target: '#graph',
-		  data: funcao
+		  data: window.functions
 		};
-		var graph = functionPlot(arr);
-		console.log('click');
-		console.log(funcao);
-		console.log(arr);
+		$( "#graph" ).empty();
+		functionPlot(arr);
+		$scope.funcs = [$scope.fun];
+		colors();
 	}
 	$scope.addGraph = function() {
-		funcao.push({ fn: $scope.fun });
-		var arr = {
-		  width: 750,
-	  	  height: 600,
-	  	  title: 'Meu gráfico',
-		  target: '#graph',
-		  data: funcao
+		if ($scope.funcs.length > 8) {
+			alert('Você pode traçar no máximo nove curvas ao mesmo tempo');
+			return
 		};
-		console.log('click');
-		console.log(funcao);
-		console.log(arr);
 
-		var graph = functionPlot(arr);
+		try {
+			functions.push({ fn: $scope.fun });
+			functionPlot(arr);
+	    } catch ( e ) {
+	        alert("Você tem certeza que  digitou uma expressão válida? Cheque o box no rodapé da página para saber sintaxe correta." );
+	        functions.pop();
+	        functionPlot(arr);
+	        return
+	    }
+
+			$scope.funcTitle = 'Funções';
+			$scope.funcs.push($scope.fun);
+
+		
+		colors();
+
+	}
+
+	$scope.removeFun = function (i) {
+		$scope.funcs.splice(i,1);
+		if ($scope.funcs.length == 1) {
+			$scope.funcTitle = 'Função';
+		};
+		window.functions.splice(i, 1);
+		if ($scope.funcs.length == 0) {
+			$scope.funcTitle = 'Adicione uma função de variável "x"!';
+		};
+		$( "#graph" ).empty();
+		functionPlot(arr);
+		colors();
+
 	}
 
 
 }]);
-
-
-
-var archive = [{
-	createdAt: 1480937608894,
-	title: 'My first even Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 1,
-	imageUrl: 'http://bs.simplusmedia.com/i/730/838/banana-beneficios.jpg'
-},
-{
-	createdAt: 1480937608894,
-	title: 'My first odd Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 2,
-	imageUrl: 'http://www.saudedica.com.br/wp-content/uploads/2014/05/Benef%C3%ADcios-da-Ma%C3%A7%C3%A3.jpg'
-},
-{
-	createdAt: 1480937608894,
-	title: 'My first odd Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 3,
-	imageUrl: 'http://viniciusofp.com.br/wp-content/uploads/2016/03/olmoemcartazcapa-700x259.jpg'
-},
-{
-	createdAt: 1480937608894,
-	title: 'My first odd Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 4
-},
-{
-	createdAt: 1480937608894,
-	title: 'My first odd Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 5
-}];

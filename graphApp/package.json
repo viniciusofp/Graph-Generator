@@ -12,6 +12,7 @@
     "ejs": "~2.5.2",
     "express": "~4.14.0",
     "function-plot": "^1.17.3",
+    "interval-arithmetic-eval": "^0.4.6",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"
   }
