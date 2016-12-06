@@ -4,14 +4,27 @@ var app = angular.module('myBlog', []);
 
 app.controller('graphContrl', ['$scope', function($scope){
 
+	var colors = function() {
+		$( window ).ready(function() {
+			for (i in $scope.funcs) {
+				var colorVal = $('.line-' + i.toString()).attr('stroke');
+				$('.funColor').eq(i).attr('style', 'color:' + colorVal);
+				console.log('Loop number ' + i.toString() + ' | ' + colorVal)
+			};
+		});
+		
+
+	};
 
 	var w = document.getElementById("graph").offsetWidth - 20;
 
-	window.novafuncao = [
-	    { fn: 'x^2' }
+	window.functions = [
+	    { fn: 'x^2' },
+	    { fn: 'cos(x)' },
+	    { fn: '2x+1' },
 	  ];
 
-	window.novoArr = {
+	window.arr = {
 	  tip: {
 		    xLine: true,    // dashed line parallel to y = 0
 		    yLine: true,    // dashed line parallel to x = 0
@@ -19,26 +32,25 @@ app.controller('graphContrl', ['$scope', function($scope){
 		      // the returning value will be shown in the tip
 		    }
 		  },
+	  grid: true,
 	  width: w,
   	  height: 600,
 	  target: '#graph',
-	  data: novafuncao
+	  data: functions
 	};
 
-	functionPlot(novoArr);
+	functionPlot(arr);
 
-	$scope.funcs = ['x^2'];
-	$scope.funcTitle = 'Função';
-
+	$scope.funcs = ['x^2', 'cos(x)', '2x+1'];
+	$scope.funcTitle = 'Funções';
+	colors();
 	
 
 	$scope.newGraph = function() {
 
 		$scope.funcTitle = 'Função';
-		window.novafuncao = [];
-
-		window.novafuncao.push({ fn: $scope.fun });
-		window.novoArr = {
+		window.functions = [{ fn: $scope.fun }];
+		window.arr = {
 		  tip: {
 		    xLine: true,    // dashed line parallel to y = 0
 		    yLine: true,    // dashed line parallel to x = 0
@@ -49,12 +61,12 @@ app.controller('graphContrl', ['$scope', function($scope){
 		  width: 750,
 	  	  height: 600,
 		  target: '#graph',
-		  data: window.novafuncao
+		  data: window.functions
 		};
 		$( "#graph" ).empty();
-		functionPlot(novoArr);
+		functionPlot(arr);
 		$scope.funcs = [$scope.fun];
-		console.log(novoArr);
+		colors();
 	}
 	$scope.addGraph = function() {
 		if ($scope.funcs.length > 8) {
@@ -63,17 +75,22 @@ app.controller('graphContrl', ['$scope', function($scope){
 		};
 		$scope.funcTitle = 'Funções';
 		$scope.funcs.push($scope.fun);
-		novafuncao.push({ fn: $scope.fun });
-		functionPlot(novoArr);
+		functions.push({ fn: $scope.fun });
+		functionPlot(arr);
+		
+		colors();
 
 	}
 
 	$scope.removeFun = function (i) {
-
 		$scope.funcs.splice(i,1);
-		window.novafuncao.splice(i, 1);
+		if ($scope.funcs.length == 1) {
+			$scope.funcTitle = 'Função';
+		};
+		window.functions.splice(i, 1);
 		$( "#graph" ).empty();
-		functionPlot(novoArr);
+		functionPlot(arr);
+		colors();
 
 	}
 

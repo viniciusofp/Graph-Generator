@@ -2,16 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="UTF-8">
-	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>My Graph generator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Curves Generator</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
 </head>
 <body ng-app="myBlog">
+<a href="https://github.com/viniciusofp/Graph-Generator"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6286ade715e9bea433b4705870de482a654f78a/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png"></a>
 <div class="container">
-	<div class="row">
-		<div id="header" class="col-md-offset-3 col-md-6">
+	<div class="row" ng-controller='graphContrl'>
+		<div id="header" class="col-sm-8">
 			<svg xmlns="http://www.w3.org/2000/svg" width="12cm" height="6cm" viewBox="0 0 1200 600" version="1.1">
 			  <title>Example quad01 - quadratic BÃ©zier commands in path data</title>
 			  <desc>Picture showing a "Q" a "T" command,
@@ -33,42 +34,50 @@
 			  </g>
 			  <path d="M200,300 L400,50 L600,300             L800,550 L1000,300" fill="none" stroke="#888888" stroke-width="2"/>
 			</svg>
-			<h1 class="text-center">Curves Generator<br>
-			<small><em>Gerador de gráficos baseado em D3.js, Function-Plot.js e Angular.js</em></small></h1>
+			<h1 class="text-center">Curves Generator</h1>
+			<h3><small><em>Gerador de gráficos construído com D3.js, Function-Plot.js e Angular.js</em></small></h3>
 		</div>
-	</div>
 
-	<div class="row" ng-controller='graphContrl'>
-		<div id="novaNotaWrapper" class="col-md-4">
+		<div id="graphController" class="col-sm-4">
 			<section >
 				<form>
 					<div class="form-group">
-						<h5>Função <span style="color: red; font-weight: bolder">*</span></h5>
-						<textarea required class="form-control" placeholder='cos(x)x' ng-model='fun' >cos(x)x</textarea>
+						<h4>Declare uma função f(x):</h4>
+						<textarea required class="form-control" placeholder='x^2, sin(x) cos(x), tan(x), 2x + 1...' ng-model='fun' >x^2, sin(x) cos(x), tan(x), 2x + 1...</textarea>
 					</div>
-					<button style="width: 47%; margin: 1%" class="btn btn-success" value="submit" type='submit' ng-click='newGraph()'><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Gerar novo gráfico</button>
-					<button style="width: 47%; margin: 1%" class="btn btn-info" value="submit" type='submit' ng-click='addGraph()'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar ao gráfico</button>
+					<button style="margin: 5px" class="btn btn-success" value="submit" type='submit' ng-click='newGraph()'><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Gerar novo gráfico</button>
+					<button style="margin: 5px" class="btn btn-info" value="submit" type='submit' ng-click='addGraph()'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar ao gráfico</button>
 				</form>	
 			</section>
 			
-			<div class="clearfix">
-				<h2 class="text-center">{{funcTitle}} <small>({{funcs.length}})</small></h2>
-				<h4 class="text-center" ng-repeat='func in funcs track by $index'>
-					{{func}}
-					<small><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click='removeFun($index)'></span></small>
-				</h4>
-			</div>
+
 
 		</div>
-
-		<div class="col-md-8">
+		<div class="clearfix"></div>
+		<div class="col-md-12">
 			<span id="graph">
 				
 			</span>
+			<div class="clearfix text-center">
+				<h3>{{funcTitle}} <small>({{funcs.length}})</small></h3>
+				<h4 class="label label-default" ng-repeat='func in funcs track by $index'>
+					<b class='funColor'>{{func}}</b>
+					<sup><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click='removeFun($index)'></span></sup>
+				</h4>
+			</div>
 		</div>
 		
 	</div>
 
+</div>
+<div id="footer" class="container-fluid">
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6 text-center">
+		<!-- Place this tag where you want the button to render. -->
+			<a class="github-button" href="https://github.com/viniciusofp/Graph-Generator" data-icon="octicon-star" data-style="mega" data-count-href="/viniciusofp/Graph-Generator/stargazers" data-count-api="/repos/viniciusofp/Graph-Generator#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star viniciusofp/Graph-Generator on GitHub">Star</a>
+			<p style="margin-top: 15px;">Desenvolvido por <a href="http://viniciusofp.com.br"><strong>viniciusofp</strong></a>, 2016</p>
+		</div>
+	</div>
 </div>
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/1.5.2/math.min.js"></script>
@@ -78,14 +87,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="javascripts/function-plot.js"></script>
 <script src="javascripts/myBlog.js"></script>
-<script type="text/javascript">
-	
-
-$( document ).ready(function() {
-    var abc = $('.line');
-	var xyz = abc.attr("stroke");
-	console.log(xyz);
-});
-</script>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>

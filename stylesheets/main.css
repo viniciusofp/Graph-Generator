@@ -1,5 +1,9 @@
+a {
+	color: inherit;
+}
+
 body	{
-	padding-top: 50px;
+	padding-top: 20px;
 	background-color: #252525;
 	color: white
 }
@@ -7,6 +11,15 @@ body	{
 #header { 
 	margin-bottom: 30px;
 	text-align: center;
+}
+
+#header h3 {
+	margin-top: 0px;
+}
+
+#header h1 {
+
+	margin-bottom: 0px;
 }
 
 
@@ -20,62 +33,29 @@ body	{
 
 
 
-#novaNotaWrapper {
-	color: #252525;
-	background: #eaeaea;
-    border: 1px solid #e0e0e0;
+#graphController {
+	margin-top: 80px;
+    color: #dedede;
+    background: #1f1f1f;
+    border: 1px solid #292929;
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 30px;
 }
 
-.post {
-	margin-bottom: 15px;
-	padding: 15px;
-
+.label-default {
+    background-color: #eaeaea;
+    color: #252525;
+    padding: 10px;
+    font-size: 16px;
+    margin: 15px 5px 5px 5px;
+    display: inline-block;
 }
 
-.form-control.postFormText {
-	height: 300px;
-}
-
-.post {
-	background-color: #fff;
-    border: 1px solid #e1efea;
-    border-radius: 5px;
-}
-
-.post.urgence1 {
-	background-color: #d1f3f0;
-    border: 1px solid #e1efea;
-    border-radius: 5px;
-}
-
-.post.urgence2 {
-	background-color: #DDFFB5;
-    border: 1px solid #eaefe1;
-    border-radius: 5px;
-}
-
-.post.urgence3 {
-	background-color: #fff5b5;
-    border: 1px solid #eaefe1;
-    border-radius: 5px;
-}
-.post.urgence4 {
-	background-color: #ffd6aa;
-    border: 1px solid #eaefe1;
-    border-radius: 5px;
-}
-.post.urgence5 {
-	background-color: #f79893;
-    border: 1px solid #eaefe1;
-    border-radius: 5px;
-}
-
-.post .img-responsive {
-	border: 1px solid #cccccc;
-	border-radius: 5px;
-	margin-top: 15px;
-	margin-bottom: 15px;
+#footer {
+	color: #252525;
+	background-color: #5cb85c;
+	padding-top: 30px;
+	padding-bottom: 40px;
+	margin-top: 30px;
 }
