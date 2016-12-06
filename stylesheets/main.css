@@ -30,6 +30,10 @@ body	{
 	margin-bottom: 0px;
 }
 
+#header svg	{
+	max-width: 100%;
+}
+
 
 #graph 	{
 	width: 100%;
@@ -42,7 +46,6 @@ body	{
 }
 
 #graph svg {
-
     font-size: 14px
 }
 
