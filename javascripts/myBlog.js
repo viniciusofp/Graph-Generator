@@ -8,7 +8,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 		$( window ).ready(function() {
 			for (i in $scope.funcs) {
 				var colorVal = $('.line-' + i.toString()).attr('stroke');
-				$('.funColor').eq(i).attr('style', 'color:' + colorVal);
+				$('.funColor').eq(i).attr('style', 'color:' + colorVal + '; border-color:' + colorVal);
 				console.log('Loop number ' + i.toString() + ' | ' + colorVal)
 			};
 		});
@@ -16,7 +16,8 @@ app.controller('graphContrl', ['$scope', function($scope){
 
 	};
 
-	var w = document.getElementById("graph").offsetWidth - 20;
+	var w = $("#graph").width() - 20;
+	var h = $("#graph").height() - 20;
 
 	window.functions = [
 	    { fn: 'x^2' },
@@ -34,7 +35,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 		  },
 	  grid: true,
 	  width: w,
-  	  height: 600,
+  	  height: h,
 	  target: '#graph',
 	  data: functions
 	};
@@ -58,8 +59,8 @@ app.controller('graphContrl', ['$scope', function($scope){
 		      // the returning value will be shown in the tip
 		    }
 		  },
-		  width: 750,
-	  	  height: 600,
+		  width: w,
+	  	  height: h,
 		  target: '#graph',
 		  data: window.functions
 		};
@@ -70,7 +71,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 	}
 	$scope.addGraph = function() {
 		if ($scope.funcs.length > 8) {
-			alert('Você pode traçar até 9 curvas ao mesmo tempo');
+			alert('Você pode traçar no máximo nove curvas ao mesmo tempo');
 			return
 		};
 		$scope.funcTitle = 'Funções';
@@ -96,39 +97,3 @@ app.controller('graphContrl', ['$scope', function($scope){
 
 
 }]);
-
-
-
-var archive = [{
-	createdAt: 1480937608894,
-	title: 'My first even Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 1,
-	imageUrl: 'http://bs.simplusmedia.com/i/730/838/banana-beneficios.jpg'
-},
-{
-	createdAt: 1480937608894,
-	title: 'My first odd Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 2,
-	imageUrl: 'http://www.saudedica.com.br/wp-content/uploads/2014/05/Benef%C3%ADcios-da-Ma%C3%A7%C3%A3.jpg'
-},
-{
-	createdAt: 1480937608894,
-	title: 'My first odd Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 3,
-	imageUrl: 'http://viniciusofp.com.br/wp-content/uploads/2016/03/olmoemcartazcapa-700x259.jpg'
-},
-{
-	createdAt: 1480937608894,
-	title: 'My first odd Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 4
-},
-{
-	createdAt: 1480937608894,
-	title: 'My first odd Post',
-	text: 'Hendrik\'s answer in the comments above will work but probably isn',
-	cor: 5
-}];

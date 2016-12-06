@@ -45,25 +45,24 @@
 						<h4>Declare uma função f(x):</h4>
 						<textarea required class="form-control" placeholder='x^2, sin(x) cos(x), tan(x), 2x + 1...' ng-model='fun' >x^2, sin(x) cos(x), tan(x), 2x + 1...</textarea>
 					</div>
-					<button style="margin: 5px" class="btn btn-success" value="submit" type='submit' ng-click='newGraph()'><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Gerar novo gráfico</button>
-					<button style="margin: 5px" class="btn btn-info" value="submit" type='submit' ng-click='addGraph()'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar ao gráfico</button>
+					<button class="btn btn-success" value="submit" type='submit' ng-click='newGraph()'><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Gerar novo gráfico</button>
+					<button class="btn btn-info" value="submit" type='submit' ng-click='addGraph()'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar ao gráfico</button>
 				</form>	
 			</section>
+			<div class="clearfix text-center">
+				<h3>{{funcTitle}} <small>({{funcs.length}})</small></h3>
+				<h4 class="label label-default funColor" ng-repeat='func in funcs track by $index'>y = {{func}}
+					<sup><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click='removeFun($index)'></span></sup>
+				</h4>
+			</div>
 			
 
 
 		</div>
 		<div class="clearfix"></div>
 		<div class="col-md-12">
-			<span id="graph">
+			<div id="graph">
 				
-			</span>
-			<div class="clearfix text-center">
-				<h3>{{funcTitle}} <small>({{funcs.length}})</small></h3>
-				<h4 class="label label-default" ng-repeat='func in funcs track by $index'>
-					<b class='funColor'>{{func}}</b>
-					<sup><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click='removeFun($index)'></span></sup>
-				</h4>
 			</div>
 		</div>
 		

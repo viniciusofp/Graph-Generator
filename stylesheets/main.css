@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee|Muli');
+
+
 a {
 	color: inherit;
 }
 
 body	{
+	font-family: 'Muli', sans-serif;
 	padding-top: 20px;
 	background-color: #252525;
 	color: white
@@ -24,6 +28,8 @@ body	{
 
 
 #graph 	{
+	width: 100%;
+	height: 600px;
 	background-color: white;
     display: block;
     border: 10px solid white;
@@ -31,6 +37,26 @@ body	{
     margin-bottom: 30px;
 }
 
+#graph svg {
+
+    font-size: 14px
+}
+
+.funColor {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    margin: 10px 5px 10px 8px;
+    display: inline-block;
+	border: 2px solid #ededed;
+}
+.funColor span {
+	color: #ffffff;
+}
+
+.label-default {
+}
 
 
 #graphController {
@@ -43,14 +69,15 @@ body	{
     margin-bottom: 30px;
 }
 
-.label-default {
-    background-color: #eaeaea;
-    color: #252525;
-    padding: 10px;
-    font-size: 16px;
-    margin: 15px 5px 5px 5px;
-    display: inline-block;
+.btn-success {
+	background-color: #589458;
+	margin: 2px;
 }
+.btn-info {
+	background-color: #548d9e;
+	margin: 2px;
+}
+
 
 #footer {
 	color: #252525;
