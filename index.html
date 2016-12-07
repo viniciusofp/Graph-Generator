@@ -14,10 +14,6 @@
 	<div class="row" ng-controller='graphContrl'>
 		<div id="header" class="col-sm-12 col-md-8">
 			<svg xmlns="http://www.w3.org/2000/svg" width="12cm" height="6cm" viewBox="0 0 1200 600" version="1.1">
-			  <title>Example quad01 - quadratic BÃ©zier commands in path data</title>
-			  <desc>Picture showing a "Q" a "T" command,
-			        along with annotations showing the control points
-			        and end points</desc>
 			  <rect x="1" y="1" width="1198" height="598" fill="none"/>
 
 			  <path d="M200,300 Q400,50 600,300 T1000,300" fill="none" stroke="#31b0d5" stroke-width="5"/>
@@ -81,59 +77,69 @@
 			<h4>Operadores Básicos</h4>
 			<table class="table table-hover">
 				<tr>
-					<th>Operador</th>
-					<th class="success">Nome</th>
+					<th class="success">Operador</th>
+					<th>Nome</th>
 					<th>Exemplo</th>
 				</tr>
 				<tr>
-					<th>+</th>
-					<td class="success">Adição</td>
+					<th class="success">+</th>
+					<td>Adição</td>
 					<td>x + 1</td>
 				</tr>
 				<tr>
-					<th>-</th>
-					<td class="success">Subtração</td>
+					<th class="success">-</th>
+					<td>Subtração</td>
 					<td>x - 2</td>
 				</tr>	
 				<tr>
-					<th>/</th>
-					<td class="success">Divisão</td>
+					<th class="success">/</th>
+					<td>Divisão</td>
 					<td>1 / x</td>
 				</tr>
 				<tr>
-					<th>*</th>
-					<td class="success">Multiplicação</td>
+					<th class="success">*</th>
+					<td>Multiplicação</td>
 					<td>x * 7</td>
 				</tr>
 				<tr>
-					<th>^</th>
-					<td class="success">Exponencial</td>
+					<th class="success">^</th>
+					<td>Exponencial</td>
 					<td>x ^ 2</td>
 				</tr>
 				<tr>
-					<th>%</th>
-					<td class="success">Módulo</td>
+					<th class="success">%</th>
+					<td>Resto aritmético positivo da divisão</td>
 					<td>x % 3</td>
 				</tr>
 				<tr>
-					<th>sqrt()</th>
-					<td class="success">Raíz Quadrada</td>
-					<td>sqrt(1 - x * x)</td>
-				</tr>
-				<tr>
-					<th>( )</th>
-					<td class="success">Agrupamento</td>
+					<th class="success">( )</th>
+					<td>Agrupamento</td>
 					<td>(x +7) * (x - 2)</td>
 				</tr>
 				<tr>
-					<th>.</th>
-					<td class="success">Números decimais</td>
+					<th class="success">.</th>
+					<td>Números decimais</td>
 					<td>0.5</td>
 				</tr>
 				<tr>
-					<th>log()</th>
-					<td class="success">Logarítimo</td>
+					<th class="success">log()</th>
+					<td>Logarítimo natural</td>
 					<td>log(x)</td>
+				</tr>
+				<tr>
+					<th class="success">log10()</th>
+					<td>Logarítimo de base 10</td>
+					<td>log10(x)</td>
+				</tr>
+				<tr>
+					<th class="success">log2()</th>
+					<td>Logarítimo de base 2</td>
+					<td>log2(x)</td>
+				</tr>
+				<tr>
+					<th class="success">sqrt()</th>
+					<td>Raíz quadrada</td>
+					<td>sqrt(1 - x * x)</td>
 				</tr>	
 			</table>
 		</div>
@@ -142,38 +148,38 @@
 			<h4>Funções Trigonoméricas</h4>
 			<table class="table table-hover">
 				<tr>
-					<th>Operador</th>
-					<th class="success">Nome</th>
+					<th class="success">Operador</th>
+					<th>Nome</th>
 					<th>Exemplo</th>
 				</tr>
 				<tr>
-					<th>sin()</th>
-					<td class="success">Seno</td>
+					<th class="success">sin()</th>
+					<td>Seno</td>
 					<td>sin(x)</td>
 				</tr>
 				<tr>
-					<th>asin()</th>
-					<td class="success">Arco Seno</td>
+					<th class="success">asin()</th>
+					<td>Arco Seno</td>
 					<td>asin(x)</td>
 				</tr>
 				<tr>
-					<th>cos()</th>
-					<td class="success">Cosseno</td>
+					<th class="success">cos()</th>
+					<td>Cosseno</td>
 					<td>cos(x)</td>
 				</tr>
 				<tr>
-					<th>acos()</th>
-					<td class="success">Arco Cosseno</td>
+					<th class="success">acos()</th>
+					<td>Arco Cosseno</td>
 					<td>acos(x)</td>
 				</tr>
 				<tr>
-					<th>tan()</th>
-					<td class="success">Tangente</td>
+					<th class="success">tan()</th>
+					<td>Tangente</td>
 					<td>tan(x)</td>
 				</tr>
 				<tr>
-					<th>atan()</th>
-					<td class="success">Arco Tangente</td>
+					<th class="success">atan()</th>
+					<td>Arco Tangente</td>
 					<td>atan(x)</td>
 				</tr>					  
 			</table>

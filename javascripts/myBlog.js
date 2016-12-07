@@ -10,20 +10,18 @@ var app = angular.module('myBlog', []);
 
 app.controller('graphContrl', ['$scope', function($scope){
 
+	// var colors = function() {
+	// 	$( window ).ready(function() {
+	// 		for (i in $scope.funcs) {
+	// 			var colorVal = $('.line-' + i.toString()).attr('stroke');
+	// 			$('.funColor').eq(i).attr('style', 'color:' + colorVal + '; border-color:' + colorVal);
+	// 			console.log('Loop number ' + i.toString() + ' | ' + colorVal)
+	// 		};
+	// 	});
+	// };
 
-
-	var colors = function() {
-		$( window ).ready(function() {
-			for (i in $scope.funcs) {
-				var colorVal = $('.line-' + i.toString()).attr('stroke');
-				$('.funColor').eq(i).attr('style', 'color:' + colorVal + '; border-color:' + colorVal);
-				console.log('Loop number ' + i.toString() + ' | ' + colorVal)
-			};
-		});
-		
-
-	};
-
+	$scope.funcs = ['x^2', 'cos(x)', '2x+1'];
+	$scope.funcTitle = 'Funções';
 	var w = $("#graph").width() - 20;
 	var h = $("#graph").height() - 20;
 
@@ -49,33 +47,27 @@ app.controller('graphContrl', ['$scope', function($scope){
 	};
 
 	functionPlot(arr);
-
-	$scope.funcs = ['x^2', 'cos(x)', '2x+1'];
-	$scope.funcTitle = 'Funções';
-	colors();
-	
-
 	
 	$scope.newGraph = function() {
-		$scope.funcs = [$scope.fun];
-		$scope.funcTitle = 'Função';
-		window.functions = [{ fn: $scope.fun }];
-		window.arr = {
-		  tip: {
-		    xLine: true,    // dashed line parallel to y = 0
-		    yLine: true,    // dashed line parallel to x = 0
-		    renderer: function (x, y, index) {
-		      // the returning value will be shown in the tip
-		    }
-		  },
-		  width: w,
-	  	  height: h,
-		  target: '#graph',
-		  data: window.functions
-		};
-		$( "#graph" ).empty();
 		try {
-			functionPlot(arr);
+			$scope.funcs = [$scope.fun];
+			$scope.funcTitle = 'Função';
+			window.functions = [{ fn: $scope.fun }];
+			window.arr = {
+			  tip: {
+			    xLine: true,    // dashed line parallel to y = 0
+			    yLine: true,    // dashed line parallel to x = 0
+			    renderer: function (x, y, index) {
+			      // the returning value will be shown in the tip
+			    }
+			  },
+			  width: w,
+		  	  height: h,
+			  target: '#graph',
+			  data: window.functions
+			};
+			$( "#graph" ).empty();
+				functionPlot(arr);
 	    } catch ( e ) {
 	        alert("Você tem certeza que  digitou uma expressão válida? Cheque o box no rodapé da página para saber sintaxe correta." );
 
@@ -95,16 +87,18 @@ app.controller('graphContrl', ['$scope', function($scope){
 			};
 	        functionPlot(arr);
 	        return
-	    }
-		colors();
+	    } 
 	}
+
 	$scope.addGraph = function() {
+
 		if ($scope.funcs.length > 8) {
 			alert('Você pode traçar no máximo nove curvas ao mesmo tempo');
 			return
 		};
 
 		try {
+			$scope.funcTitle = 'Funções';
 			functions.push({ fn: $scope.fun });
 			functionPlot(arr);
 	    } catch ( e ) {
@@ -113,13 +107,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 	        functionPlot(arr);
 	        return
 	    }
-
-			$scope.funcTitle = 'Funções';
 			$scope.funcs.push($scope.fun);
-
-		
-		colors();
-
 	}
 
 	$scope.removeFun = function (i) {
@@ -133,11 +121,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 		};
 		$( "#graph" ).empty();
 		functionPlot(arr);
-		colors();
 
 	}
-
-		
-
 
 }]);
