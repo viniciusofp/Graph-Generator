@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Bungee|Muli');
+@import url('https://fonts.googleapis.com/css?family=Arimo:400,700');
 
 
 a {
@@ -10,7 +10,7 @@ a:hover {
 }
 
 body	{
-	font-family: 'Muli', sans-serif;
+	font-family: 'Arimo', sans-serif;
 	padding-top: 20px;
 	background-color: #252525;
 	color: white
@@ -62,7 +62,12 @@ body	{
 	color: #ffffff;
 }
 
-.label-default {
+.table {
+	background-color: #ededed;
+	color: #252525;
+}
+th {
+	text-align: center;
 }
 
 
