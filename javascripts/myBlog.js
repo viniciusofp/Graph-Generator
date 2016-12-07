@@ -58,7 +58,6 @@ app.controller('graphContrl', ['$scope', function($scope){
 	
 	$scope.newGraph = function() {
 		$scope.funcs = [$scope.fun];
-
 		$scope.funcTitle = 'Função';
 		window.functions = [{ fn: $scope.fun }];
 		window.arr = {
@@ -79,7 +78,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 			functionPlot(arr);
 	    } catch ( e ) {
 	        alert("Você tem certeza que  digitou uma expressão válida? Cheque o box no rodapé da página para saber sintaxe correta." );
-	        window.functions = [{ fn: 'x' }];
+
 	        $scope.funcs = ['x'];
 	        window.arr = {
 			  tip: {
@@ -92,7 +91,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 			  width: w,
 		  	  height: h,
 			  target: '#graph',
-			  data: window.functions
+			  data: [{ fn: 'x' }]
 			};
 	        functionPlot(arr);
 	        return
