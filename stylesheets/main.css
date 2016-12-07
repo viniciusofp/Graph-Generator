@@ -65,9 +65,11 @@ body	{
 .table {
 	background-color: #ededed;
 	color: #252525;
+	border-radius: 5px;
 }
 th {
 	text-align: center;
+	border-radius: 5px;
 }
 
 
