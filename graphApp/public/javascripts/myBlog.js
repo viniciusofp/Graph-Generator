@@ -55,6 +55,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 	
 
 	$scope.newGraph = function() {
+		$scope.funcs = [$scope.fun];
 
 		$scope.funcTitle = 'Função';
 		window.functions = [{ fn: $scope.fun }];
@@ -73,7 +74,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 		};
 		$( "#graph" ).empty();
 		functionPlot(arr);
-		$scope.funcs = [$scope.fun];
+	$('#graph svg').attr('id', 'svgGraph');
 		colors();
 	}
 	$scope.addGraph = function() {
@@ -114,6 +115,47 @@ app.controller('graphContrl', ['$scope', function($scope){
 		colors();
 
 	}
+	$scope.save = function () {
+	  // $("canvas").width(w);
+	  // $("canvas").height(h);
+
+
+	  // var html = d3.select("#graph svg")
+	  //       .attr("version", 1.1)
+	  //       .attr("xmlns", "http://www.w3.org/2000/svg")
+	  //       .node().parentNode.innerHTML;
+
+	  // //console.log(html);
+	  // var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
+	  // var img = '<img src="'+imgsrc+'">'; 
+	  // d3.select("#svgdataurl").html(img);
+
+
+	  // var canvas = document.querySelector("canvas"),
+		 //  context = canvas.getContext("2d");
+
+	  // var image = new Image;
+	  // image.src = imgsrc;
+	  // image.onload = function() {
+		 //  context.drawImage(image, 0, 0);
+
+		 //  var canvasdata = canvas.toDataURL("image/png");
+
+		 //  var pngimg = '<img src="'+canvasdata+'">'; 
+	  // 	  d3.select("#pngdataurl").html(pngimg);
+
+		 //  var a = document.createElement("a");
+		 //  a.download = "curvesGenerator.png";
+		 //  a.href = canvasdata;
+		 //  a.click();
+	  // };
+	  $('#graph svg').attr('id', 'svgGraph');
+	  saveSvgAsPng(document.getElementById("svgGraph"), "curvesGenerator.png");
+
+
+
+	}
+		
 
 
 }]);

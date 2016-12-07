@@ -7,6 +7,7 @@ var app = angular.module('myBlog', []);
 
 
 
+
 app.controller('graphContrl', ['$scope', function($scope){
 
 
@@ -54,6 +55,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 	colors();
 	
 
+	
 	$scope.newGraph = function() {
 		$scope.funcs = [$scope.fun];
 
@@ -73,7 +75,28 @@ app.controller('graphContrl', ['$scope', function($scope){
 		  data: window.functions
 		};
 		$( "#graph" ).empty();
-		functionPlot(arr);
+		try {
+			functionPlot(arr);
+	    } catch ( e ) {
+	        alert("Você tem certeza que  digitou uma expressão válida? Cheque o box no rodapé da página para saber sintaxe correta." );
+	        window.functions = [{ fn: 'x' }];
+	        $scope.funcs = ['x'];
+	        window.arr = {
+			  tip: {
+			    xLine: true,    // dashed line parallel to y = 0
+			    yLine: true,    // dashed line parallel to x = 0
+			    renderer: function (x, y, index) {
+			      // the returning value will be shown in the tip
+			    }
+			  },
+			  width: w,
+		  	  height: h,
+			  target: '#graph',
+			  data: window.functions
+			};
+	        functionPlot(arr);
+	        return
+	    }
 		colors();
 	}
 	$scope.addGraph = function() {
@@ -114,6 +137,8 @@ app.controller('graphContrl', ['$scope', function($scope){
 		colors();
 
 	}
+
+		
 
 
 }]);
