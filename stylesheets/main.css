@@ -58,6 +58,9 @@ body	{
     display: inline-block;
     border: 2px solid;
 }
+.funColor:hover {
+	background-color: #2e2e2e;
+}
 .funColor span {
 	color: #ffffff;
 }
