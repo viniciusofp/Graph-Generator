@@ -1,5 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Arimo:400,700');
 
+
+body	{
+	font-family: 'Arimo', sans-serif;
+	padding-top: 20px;
+	background-color: #252525;
+	color: white
+}
 
 a {
 	color: inherit;
@@ -9,12 +15,10 @@ a:hover {
 	color: white;
 }
 
-body	{
-	font-family: 'Arimo', sans-serif;
-	padding-top: 20px;
-	background-color: #252525;
-	color: white
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
 }
+
 
 #header { 
 	margin-bottom: 30px;
@@ -47,6 +51,12 @@ body	{
 
 #graph svg {
     font-size: 14px
+}
+
+#axis	{
+	margin-right: 60px;
+    top: -25px;
+    position: relative;
 }
 
 .funColor {
@@ -114,7 +124,7 @@ th {
 
 
 #graphController {
-	margin-top: 80px;
+	margin-top: 15px;
     color: #dedede;
     background: #1f1f1f;
     border: 1px solid #292929;
