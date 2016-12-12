@@ -1,12 +1,4 @@
-
-
-
 var app = angular.module('myBlog', []);
-
-
-
-
-
 
 app.controller('graphContrl', ['$scope', function($scope){
 
@@ -27,7 +19,7 @@ app.controller('graphContrl', ['$scope', function($scope){
 
 	window.functions = [
 	    { fn: 'x^2' },
-	    { fn: 'cos(x)' },
+	    { fn: 'cos(x)'},
 	    { fn: '2x+1' },
 	  ];
 
@@ -53,38 +45,16 @@ app.controller('graphContrl', ['$scope', function($scope){
 			$scope.funcs = [$scope.fun];
 			$scope.funcTitle = 'Função';
 			window.functions = [{ fn: $scope.fun }];
-			window.arr = {
-			  tip: {
-			    xLine: true,    // dashed line parallel to y = 0
-			    yLine: true,    // dashed line parallel to x = 0
-			    renderer: function (x, y, index) {
-			      // the returning value will be shown in the tip
-			    }
-			  },
-			  width: w,
-		  	  height: h,
-			  target: '#graph',
-			  data: window.functions
-			};
+			window.arr.data =  window.functions;
+			window.arr.grid = $scope.showgrid;
 			$( "#graph" ).empty();
 				functionPlot(arr);
 	    } catch ( e ) {
 	        alert("Você tem certeza que  digitou uma expressão válida? Cheque o box no rodapé da página para saber sintaxe correta." );
 	        window.functions = [{ fn: 'x' }];
 	        $scope.funcs = ['x'];
-	        window.arr = {
-			  tip: {
-			    xLine: true,    // dashed line parallel to y = 0
-			    yLine: true,    // dashed line parallel to x = 0
-			    renderer: function (x, y, index) {
-			      // the returning value will be shown in the tip
-			    }
-			  },
-			  width: w,
-		  	  height: h,
-			  target: '#graph',
-			  data: window.functions
-			};
+	        window.arr.data =  window.functions;
+			window.arr.grid = $scope.showgrid;
 	        functionPlot(arr);
 	        return
 	    } 
@@ -100,6 +70,8 @@ app.controller('graphContrl', ['$scope', function($scope){
 		try {
 			$scope.funcTitle = 'Funções';
 			functions.push({ fn: $scope.fun });
+	        window.arr.data =  window.functions;
+			window.arr.grid = $scope.showgrid;
 			functionPlot(arr);
 	    } catch ( e ) {
 	        alert("Você tem certeza que  digitou uma expressão válida? Cheque o box no rodapé da página para saber sintaxe correta." );
@@ -121,6 +93,19 @@ app.controller('graphContrl', ['$scope', function($scope){
 		};
 		$( "#graph" ).empty();
 		functionPlot(arr);
+
+	}
+
+	$scope.copy = function() {
+		var target = document.getElementById('graph');
+		var wrap = document.createElement('div');
+		wrap.appendChild(target.cloneNode(true));
+		alert(wrap.innerHTML);
+
+
+
+		console.log(wrap.innerHTML);
+		window.prompt("Copy to clipboard: Ctrl+C, Enter", wrap.innerHTML);
 
 	}
 
